@@ -27,13 +27,10 @@ async function handleuserLogin(req,res){
 
     });
 
-    const Sessionid=uuidv4();
-    console.log("mssg",Sessionid);
+    const token=setuser({email: user.email });
+    res.cookie("uid",token);
 
-    setuser(Sessionid,user);
-    res.cookie("uid",Sessionid);
-
-    res.json({mssg:"Login Successfully","uid":Sessionid});
+    res.json({mssg:"Login Successfully","token":token});
 }
 
 module.exports={handleuser,handleuserLogin};

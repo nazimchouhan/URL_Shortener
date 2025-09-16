@@ -1,15 +1,15 @@
 
-const sessionIdtoUser=new Map();
+const jwt=require("jsonwebtoken");
+const secret="meowmeowmeowmeowmeow";
 
-function setuser(id,user){
-    sessionIdtoUser.set(id,user);
-    console.log(sessionIdtoUser.size);
+function setuser(user){
+    return jwt.sign(user,secret)
 
 }
 
-function getuser(id){
-    console.log(sessionIdtoUser.size);
-    return sessionIdtoUser.get(id);
+function getuser(token){
+
+    return jwt.verify(token,secret);
 }
 
 
